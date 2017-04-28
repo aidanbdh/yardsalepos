@@ -2,9 +2,10 @@
   "name": "yardsalepos",
   "version": "1.0.0",
   "description": "A POS and reporting website for people who are running garage sales.",
-  "main": "index.js",
+  "main": "public/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test:watch": "mocha -w -R min"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,8 @@
   },
   "homepage": "https://github.com/aidanbdh/yardsalepos#readme",
   "dependencies": {
+    "electron": "^1.6.6",
+    "moment": "^2.18.1",
     "react": "^15.5.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
