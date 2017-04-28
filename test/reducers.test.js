@@ -1,16 +1,21 @@
 /* globals describe it */
-import { expect } from 'chai'
-import { reducer } from '../public/reducers/combine-reducers'
-import { action } from '../public/actions'
+const { expect } = require('chai')
+const moment = require('moment')
+moment().format()
+const reducer = require('../public/reducers/combine-reducers')
+const Item = require('../public/actions/item.js')
 
 describe('reducers', () => {
 
-  describe('reducer', () => {
+  describe('items', () => {
 
-    it('does something', () => {
-      //Call reducer with an action and save the return obj
-      const test = reducer(action)
-      expect(test).to.deep.equal({}) //Populate with state objects
+    it('Adds a new transaction to the state', () => {
+      const day = moment('20170427')
+      const sale = Item(day, 19.98)
+      const test = reducer(undefined, sale)
+      expect(test).to.deep.equal({
+        transactions: [{ date: day, ammount: 19.98 }]
+      })
     })
 
   })
