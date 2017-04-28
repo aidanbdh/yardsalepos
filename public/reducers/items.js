@@ -4,13 +4,15 @@ module.exports = (state, action) => {
       if(state.transactions.length === 0) return Object.assign({}, state, {
           transactions: [{
             date: action.date,
-            ammount: action.ammount
+            ammount: action.ammount,
+            category: action.category
           }]
         })
       return Object.assign({}, state, {
         transactions: state.transactions.splice(state.transactions.length, 0, {
           date: action.date,
-          ammount: action.ammount
+          ammount: action.ammount,
+          category: action.category
         })
       })
     default:
