@@ -1,3 +1,4 @@
 module.exports = {
-  transactions: []
+  transactions: [],
+  filePath: 'C:/Mac/Users/aidanharveydev/yardsalepos/data.js'
 }

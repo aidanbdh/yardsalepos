@@ -13,17 +13,25 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-module.exports = connect(mapStateToProps, mapDispatchToProps)(({ transactions, add }) =>
-  <div>
+module.exports = connect(mapStateToProps, mapDispatchToProps)(({ transactions, add }) => {
+  let date
+  let ammount
+  const submit = event => {
+    event.preventDefault()
+    add(date, ammount)
+  }
+  return <div>
     <ul>
       {
-        transactions.map(({ date, ammount }) => {
-          return <li>{ date } | { ammount }</li>
+        transactions.map(({ date, ammount }, index) => {
+          return <li>{ index+1 } | { date } | { ammount }</li>
         })
       }
     </ul>
-    <label>Date: <input></input></label>
-    <label>Ammount: <input></input></label>
-    <button onClick={ add() }></button>
+    <form onSubmit={ submit }>
+      <label>Date: <input type='text' value={ date }></input></label>
+      <label>Ammount: <input type='text' value={ ammount }></input></label>
+      <button type='submit'></button>
+    </form>
   </div>
-)
+})
