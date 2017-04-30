@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
-import jsPDF from 'jspdf'
+import JsPDF from 'jspdf'
 import fs from 'fs'
 
 const mapStateToProps = ({ transactions }) => ({ transactions })
 
 module.exports = connect(mapStateToProps)(({ transactions }) => {
   const downloadPDF = () => {
-    const pdf = new jsPDF()
-    pdf.text = [`Transactions`].push(transactions.map(({ date, ammount }) =>
-      `${ date } | $${ ammount }`
+    const pdf = new JsPDF()
+    pdf.text = [`Transactions`].push(transactions.map(({ date, ammount, category, time }) =>
+      `${ date } | ${ time } | $${ ammount } | ${ category }`
     ))
     fs.writeFile('transactions.pdf', pdf, () => {})
   }

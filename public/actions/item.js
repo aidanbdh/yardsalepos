@@ -1,7 +1,8 @@
-module.exports = (date, ammount, category = null, time = 0) => ({
+module.exports = (date, ammount, category = null, otherCategory = null, time = 0) => ({
   type: 'item',
   date,
   time,
   ammount,
-  category
+  category,
+  otherCategory
 })

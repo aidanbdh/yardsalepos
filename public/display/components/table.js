@@ -18,15 +18,16 @@ module.exports = connect(mapStateToProps, mapDispatchToProps)(({ transactions, a
   let time
   let ammount
   let category
+  let otherCategory
   const submit = event => {
     event.preventDefault()
-    add(date, ammount, category, time)
+    add(date, ammount, category, otherCategory, time)
   }
   return <div>
     <ul>
       {
-        transactions.map(({ date, ammount, category }, index) => {
-          return <li>{ index+1 } | { date } | { time || '' } | { ammount } | { category || '' }</li>
+        transactions.map(({ date, ammount, category, otherCategory, time }, index) => {
+          return <li>{ index+1 } | { date } | { time || '' } | { ammount } | { category || '' } | { otherCategory || '' }</li>
         })
       }
     </ul>
@@ -35,6 +36,7 @@ module.exports = connect(mapStateToProps, mapDispatchToProps)(({ transactions, a
       <label>Time(hrmn): <input type='text' value={ time }></input></label>
       <label>Ammount: <input type='text' value={ ammount }></input></label>
       <label>Category: <input type='text' value={ category }></input></label>
+      <label>Other Category: <input type='text' value={ otherCategory }></input></label>
       <button type='submit'>Enter</button>
     </form>
   </div>
