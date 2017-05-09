@@ -1,6 +1,9 @@
-import { createStore } from 'redux'
-import reducer from './reducers/combine-reducers.js'
+const { createStore } = require('redux')
+const reducer = require('./reducers/combine-reducers.js')
 
-const store = createStore(reducer)
+let store
+
+//if(window) { store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+store = createStore(reducer)
 
 module.exports = store

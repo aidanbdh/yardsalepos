@@ -1,6 +1,7 @@
-import { connect } from 'react-redux'
-import JsPDF from 'jspdf'
-import fs from 'fs'
+const React = require('react')
+const { connect } = require('react-redux')
+const JsPDF = require('jspdf')
+const fs = require('fs')
 
 const mapStateToProps = ({ transactions }) => ({ transactions })
 

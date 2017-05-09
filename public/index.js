@@ -1,10 +1,10 @@
 const React = require('react')
 const { render } = require('react-dom')
 const { Provider } = require('react-redux')
-const store = require('../store')
-const Transactions = require('./views/transactions.js')
+const store = require('./store')
+const Transactions = require('./display/views/transactions.js')
 
-render (
+render(
   <Provider store={ store }>
     <Transactions/>
   </Provider>,
