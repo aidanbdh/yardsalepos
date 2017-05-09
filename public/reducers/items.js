@@ -1,6 +1,14 @@
+const moment = require('moment')
+moment().format()
+
 module.exports = (state, action) => {
   switch(action.type) {
     case 'item':
+      var date = action.date.split('/').map(val => {
+        if(val.length === 1) return `0${ val }`
+        return val
+      })
+      action.date = moment([date[2], date[0], date[1]].join('-'))
       var analytics = Object.assign({}, state.analytics)
       if(action.category) {
         if(analytics[action.category]) {
@@ -40,7 +48,7 @@ module.exports = (state, action) => {
           analytics
         })}
       return Object.assign({}, state, {
-        transactions: state.transactions.splice(state.transactions.length, 0, {
+        transactions: state.transactions.concat({
           date: action.date,
           time: action.time,
           ammount: action.ammount,

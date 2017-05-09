@@ -1,15 +1,14 @@
-import { connect } from 'react-redux'
+const React = require('react')
+const { connect } = require('react-redux')
 
-const mapStateToProps = ({ analytics }) => { analytics }
+const mapStateToProps = ({ analytics }) => ({ analytics })
 
 module.exports = connect(mapStateToProps)(({ analytics }) => {
-  const display = Object.assign({}, analytics)
-  Object.getOwnPropertyNames(display)
   return <ul>
     <li> Name | Number | Percent | Ammount </li>
     {
-      Object.getOwnPropertyNames(analytics).map(val =>
-        <li> { val } | { analytics[val].number } | %{ analytics[val].percent } | ${ analytics[val].ammount } </li>
+      Object.getOwnPropertyNames(analytics).map((val, index) =>
+        <li key={ index }> { val } | { analytics[val].number } | %{ analytics[val].percent } | ${ analytics[val].ammount } </li>
       )
     }
   </ul>
