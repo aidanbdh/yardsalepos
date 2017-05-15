@@ -2,13 +2,13 @@
   "name": "yardsalepos",
   "version": "1.0.0",
   "description": "A POS and reporting website for people who are running garage sales.",
-  "main": "public/app.js",
+  "main": "main-process.js",
   "scripts": {
     "start": "electron .",
     "test": "mocha",
     "test:watch": "mocha -w -R min",
-    "bundle": "browserify -t babelify public/index.js -o public/main.js",
-    "bundle:watch": "watchify -v -t babelify public/index.js -o public/main.js"
+    "bundle": "browserify -t babelify renderer-process/index.js -o renderer-process/main.js",
+    "bundle:watch": "watchify -v -t babelify renderer-process/index.js -o renderer-process/main.js"
   },
   "repository": {
     "type": "git",

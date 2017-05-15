@@ -2,8 +2,8 @@
 const { expect } = require('chai')
 const moment = require('moment')
 moment().format()
-const reducer = require('../public/reducers/combine-reducers')
-const Item = require('../public/actions/item.js')
+const reducer = require('../renderer-process/reducers/combine-reducers')
+const Item = require('../renderer-process/actions/item.js')
 
 describe('reducers', () => {
 
