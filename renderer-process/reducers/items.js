@@ -29,12 +29,12 @@ module.exports = (state, action) => {
       if(action.category) {
         if(analytics[action.category]) {
           analytics[action.category].number++
-          analytics[action.category].percent = analytics[action.category].number / (state.transactions.length + 1) * 100
+          analytics[action.category].percent = analytics[action.category].number / state.transactions.length * 100
           analytics[action.category].ammount += action.amount
         } else {
           analytics[action.category] = {
             number: 1,
-            percent: 100,
+            percent: 1 / state.transactions.length * 100,
             ammount: action.ammount
           }
         }
@@ -42,13 +42,13 @@ module.exports = (state, action) => {
       if(action.otherCategory) {
         if(analytics[action.otherCategory]) {
           analytics[action.otherCategory].number++
-          analytics[action.otherCategory].percent = analytics[action.category].number / (state.transactions.length + 1) * 100
+          analytics[action.otherCategory].percent = analytics[action.category].number / state.transactions.length * 100
           analytics[action.otherCategory].ammount += action.amount
         } else {
           analytics[action.otherCategory] = {
             number: 1,
-            percent: 100,
-            ammount: action.ammount
+            percent: 1 / state.transactions.length * 100
+            +ammount: action.ammount
           }
         }
       }
