@@ -27,7 +27,7 @@ module.exports = connect(mapStateToProps, mapDispatchToProps)(({ transactions, a
     <ul>
       {
         transactions.map(({ date, ammount, category, otherCategory, time }, index) =>
-          <li key={ index }>{ index+1 } | { date.get('month') + 1 }/{ date.get('date') }/{ date.get('year') } | { time ?time + '|' :'' } { ammount } { category ?' | ' + category :'' }{ otherCategory ?' | ' + otherCategory :'' }</li>
+          <li key={ index }>{ index+1 } | { date.get('month') + 1 }/{ date.get('date') }/{ date.get('year') } | { time ?time + '|' :'' } { ammount % 1 === 0 ? `$${ammount}.00` : '$' + ammount } { category ?' | ' + category :'' }{ otherCategory ?' | ' + otherCategory :'' }</li>
         )
       }
     </ul>
