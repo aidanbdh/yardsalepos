@@ -8,7 +8,23 @@ module.exports = (state, action) => {
         if(val.length === 1) return `0${ val }`
         return val
       })
-      action.date = moment([date[2], date[0], date[1]].join('-'))
+      var time = action.time.indexOf(':') !== -1
+        ? action.time.split(':').map(val => {
+          if(val.length === 1) return `0${ val }`
+          return val
+        })
+        : action.time.split('').reduceRight((str, val, index) =>
+          index === action.time.length - 3
+            ? action.time.length === 3
+              ? '0' + val + ':' + str
+              : val + ':' + str
+            : val + str
+        , '')
+      action.time = time
+      action.date = moment([date[2], date[0], date[1]].join('-') + 'T' + time)
+      var ammount = action.ammount.split('')
+      ammount.indexOf('.') !== -1 ? ammount.splice(ammount.indexOf('.'), 1) : ammount = [ammount, '00']
+      action.ammount = parseInt(ammount.join(''), 10)/100
       var analytics = Object.assign({}, state.analytics)
       if(action.category) {
         if(analytics[action.category]) {
