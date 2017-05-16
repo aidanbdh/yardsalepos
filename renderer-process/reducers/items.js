@@ -38,6 +38,10 @@ module.exports = (state, action) => {
             ammount: action.ammount
           }
         }
+        Object.keys(analytics).forEach(val => {
+          if(val === action.category || val === action.otherCategory) return
+          analytics[val].percent = analytics[val].number / state.transactions.length + 1
+        })
       }
       if(action.otherCategory) {
         if(analytics[action.otherCategory]) {
@@ -47,10 +51,14 @@ module.exports = (state, action) => {
         } else {
           analytics[action.otherCategory] = {
             number: 1,
-            percent: 1 / state.transactions.length * 100
-            +ammount: action.ammount
+            percent: 1 / state.transactions.length * 100,
+            ammount: action.ammount
           }
         }
+        Object.keys(analytics).forEach(val => {
+          if(val === action.category || val === action.otherCategory) return
+          analytics[val].percent = analytics[val].number / state.transactions.length + 1
+        })
       }
       if(state.transactions.length === 0) {
         return Object.assign({}, state, {
